@@ -13,3 +13,6 @@ known_first_party = ["celsus_pkg"]
 line_length = 120
 py_version=38
 profile = "black"
+
+[tool.poetry]
+
