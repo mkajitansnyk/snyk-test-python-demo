@@ -15,4 +15,5 @@ py_version=38
 profile = "black"
 
 [tool.poetry]
+name = "test"
 
