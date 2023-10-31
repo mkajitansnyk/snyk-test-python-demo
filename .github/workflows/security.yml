@@ -37,7 +37,7 @@ jobs:
         run: |
           npm install snyk -g
           snyk auth ${{secrets.SNYK_TOKEN}}
-          snyk test --package-manager=pip --file=requirements/one-requirements.txt -d
+          snyk test --package-manager=pip --file=${{ matrix.requirements }}
         continue-on-error: true
 
       - name: Run Snyk to check for vulnerabilities
@@ -45,4 +45,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --package-manager=pip --file=${{ matrix.requirements }} -d
+          args: --package-manager=pip --file=${{ matrix.requirements }}
