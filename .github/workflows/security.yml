@@ -25,6 +25,18 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install -r ${{ matrix.requirements }}
+          
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Setup Snyk and run test # For information about the required commands for generating an HTML report see https://github.com/snyk/snyk-to-html
+        run: |
+          npm install snyk -g
+          snyk auth ${{secrets.SNYK_TOKEN}}
+          snyk test --package-manager=pip --file=requirements/one-requirements.txt -d
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
