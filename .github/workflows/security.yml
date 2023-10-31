@@ -33,7 +33,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: ''
 
-      - name: Setup Snyk and run test # For information about the required commands for generating an HTML report see https://github.com/snyk/snyk-to-html
+      - name: Setup Snyk and run test
         run: |
           npm install snyk -g
           snyk auth ${{secrets.SNYK_TOKEN}}
